@@ -20,7 +20,7 @@ To get change notifications for virtual events, you may specify the resource as 
 
 | Permission type                       | Permissions (from least to most privileged)              | Supported versions |
 |:--------------------------------------|:---------------------------------------------------------|:-------------------|
-| Delegated (work or school account)    | Not supported.                                           | Not supported.     |
+| Delegated (work or school account)    | VirtualEvent.Read                                        | Not supported.     |
 | Delegated (personal Microsoft account)| Not supported.                                           | Not supported.     |
 | Application                           | VirutalEvent.Read.All                                    | beta               |
 
@@ -38,6 +38,8 @@ Content-Type: application/json
 }
 ```
 
+For delegated tokens, notifications for events will only be delievered to a subscriber if the user token's object id matches an organizer or co-organizer id on notifications.
+
 ### Subscription to specific event
 ```HTTP
 POST https://graph.microsoft.com/beta/subscriptions
@@ -52,6 +54,7 @@ Content-Type: application/json
 }
 ```
 
+For delegated tokens, notifications for specific event id will only be delievered to a subscriber if the user token's object id matches an organizer or co-organizer id on notifications.
 
 ## Receiving event notifications
 
