@@ -12,25 +12,33 @@ ms.custom: scenarios:getting-started
 ## Subscribe to notifications for virtual event updates.
 
 To get change notifications for virtual events, you may specify the resource as the following: 
-- `solutions/virtualEvents/events` to receive notifications for all virtual events in tenant. 
-- `solutions/virtualEvents/events/{eventId}` to receive notificatiions for a specific virtual event.
-  - **Note:** Please replace {eventId} with the actual virtual event id. For more on the virtual event id, see [VIRTUALEVENT API/RESOURCE PAGE](SOMELINK).
+
+### Subscribeable resources
+- `solutions/virtualEvents/events` to receive notifications for all virtual events in tenant. This type of subscription is limited to created updates for events.
+- `solutions/virtualEvents/events/{eventId}` to receive notifications for a specific virtual event.
+
+***Please use the ?$filter odata query parameter to specify the event organizer and co-organizers that are interested in notifications. Only notifications with matching event id and contain the organizer/coorganizer id will receive messages. Examples for Odata query params are listed below: ---> Are distingu***
+ - ***`solutions/virtualEvents/events/?$filter=organizerid eq '{organizer}' and coorganizerids in ('{co-organizer1}', '{co-organizer2}')` 
+ - ***`solutions/virtualEvents/events/{eventId}?$filter=organizerid eq '{organizer}' and coorganizerids in ({co-organizer1}', '{co-organizer2}')` 
+ - Will need clarity on how to represent these as it can be confusing. Are these organizers and co-organizers combinations specific? ie.) notifications must have these organizers and coorganizers. 
+
+**Note:** Please replace values with paranthesis with actual values.
 
 ### Permissions
 
 | Permission type                       | Permissions (from least to most privileged)              | Supported versions |
 |:--------------------------------------|:---------------------------------------------------------|:-------------------|
-| Delegated (work or school account)    | VirtualEvent.Read                                        | Not supported.     |
+| Delegated (work or school account)    | Not supported.                                           | Not supported.     |
 | Delegated (personal Microsoft account)| Not supported.                                           | Not supported.     |
 | Application                           | VirutalEvent.Read.All                                    | beta               |
 
-### Subscription to all events in tenant
+### Subscription to all created events in a tenant
 ```HTTP
 POST https://graph.microsoft.com/beta/subscriptions
 Content-Type: application/json
 
 {
-  "changeType": "updated",
+  "changeType": "created",
   "notificationUrl": "https://webhook.contoso.com/api",
   "resource": "solutions/virtualEvents/events",
   "expirationDateTime": "2021-02-01T11:00:00.0000000Z",
@@ -40,7 +48,7 @@ Content-Type: application/json
 
 For delegated tokens, notifications for events will only be delievered to a subscriber if the user token's object id matches an organizer or co-organizer id on notifications.
 
-### Subscription to specific event
+### Subscription to specific event's updated and deleted
 ```HTTP
 POST https://graph.microsoft.com/beta/subscriptions
 Content-Type: application/json
