@@ -14,6 +14,13 @@ ms.custom: scenarios:getting-started
 To get change notifications for virtual events, you may specify the resource as the following: 
 
 ### Subscribeable resources
+
+| Resource Type | Resource specification | Supported change types | Description |
+|:--------------|:-----------------------|:-----------------------|:------------|
+| Event         | solutions/virtualEvents/events              | created | | 
+| Sessions/online meeting | communications/ | updated | |
+| Registrant | 
+| Attendance report |
 - `solutions/virtualEvents/events` to receive notifications for all virtual events in tenant. This type of subscription is limited to created updates for events.
 - `solutions/virtualEvents/events/{eventId}` to receive notifications for a specific virtual event.
 
