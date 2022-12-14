@@ -4830,13 +4830,13 @@ items:
               href: api/orgcontact-get-manager.md
             - name: Get member objects
               href: api/directoryobject-getmemberobjects.md
-          - name: Subscribed SKU
-            href: resources/subscribedsku.md
-            items:
-            - name: List subscribedSkus
-              href: api/subscribedsku-list.md
-            - name: Get subscribedSku
-              href: api/subscribedsku-get.md
+        - name: Subscribed SKU
+          href: resources/subscribedsku.md
+          items:
+          - name: List subscribedSkus
+            href: api/subscribedsku-list.md
+          - name: Get subscribedSku
+            href: api/subscribedsku-get.md
         - name: Role management
           href: resources/rolemanagement.md
           items:
